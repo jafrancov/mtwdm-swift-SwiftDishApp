@@ -47,9 +47,14 @@ struct ItemDetailView: View {
         }
         .navigationBarTitle(Text(item.name), displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
-            self.favoritos.add(item: self.item)
+            if self.favoritos.items.contains(self.item) {
+                self.favoritos.remove(item: self.item)
+            } else {
+                self.favoritos.add(item: self.item)
+            }
+            
         }) {
-            if favoritos.items.contains(self.item) {
+            if self.favoritos.items.contains(self.item) {
                 Image(systemName: "heart.fill")
             } else {
                 Image(systemName: "heart")
